@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VELORA — Crafted to Stand Out</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0B0B0C; --black2:#141417; --purple:#6A0DAD; --purple-l:#8B3FD1;
+  --gold:#D4AF37; --gold-l:#E8CD6E; --ivory:#F5F1E8; --violet:#B480D9; --midnight:#1C1C24;
+  --line:rgba(245,241,232,0.14);
+  color-scheme: dark;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;height:100%;}
+body{background:var(--black);color:var(--ivory);font-family:'Montserrat',sans-serif;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500;margin:0;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+/* NAV */
+header{position:sticky;top:0;z-index:40;background:rgba(11,11,12,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;}
+.logo{font-family:'Playfair Display',serif;font-size:1.6rem;letter-spacing:0.04em;}
+.logo .dot{color:var(--gold);}
+.navlinks{display:flex;gap:30px;font-size:0.88rem;letter-spacing:0.03em;}
+.navlinks a{opacity:0.8;transition:opacity .2s;}
+.navlinks a.active,.navlinks a:hover{opacity:1;color:var(--gold-l);}
+.navright{display:flex;align-items:center;gap:18px;}
+.cartbtn{position:relative;background:none;border:none;color:var(--ivory);padding:6px;}
+.cartbtn svg{width:22px;height:22px;}
+.cartcount{position:absolute;top:-4px;right:-6px;background:var(--purple);color:#fff;font-size:0.65rem;
+  width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.hamburger{display:none;background:none;border:none;color:var(--ivory);font-size:1.4rem;}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:13px 28px;font-size:0.85rem;letter-spacing:0.04em;border-radius:1px;border:1px solid transparent;transition:background .2s,color .2s;}
+.btn-gold{background:var(--gold);color:var(--black);}
+.btn-gold:hover{background:var(--gold-l);}
+.btn-outline{border-color:var(--ivory);color:var(--ivory);}
+.btn-outline:hover{background:var(--ivory);color:var(--black);}
+
+/* HERO */
+.hero{background:radial-gradient(ellipse at 70% 20%, rgba(106,13,173,0.35), transparent 60%),var(--black);padding:90px 0 80px;text-align:center;}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem);max-width:14ch;margin:0 auto;line-height:1.1;}
+.hero .slogan{color:var(--gold);font-style:italic;font-size:1.1rem;margin-top:18px;}
+.hero p{max-width:46ch;margin:18px auto 0;color:#C9C4B8;}
+.hero .ctas{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* SECTION HEAD */
+.section{padding:80px 0;}
+.section-head{text-align:center;margin-bottom:48px;}
+.section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+.section-head p{color:#A9A398;margin-top:10px;}
+
+/* COLLECTION GRID (home + collections page) */
+.coll-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.coll-card{background:var(--black2);padding:40px 26px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;transition:background .2s;}
+.coll-card:hover{background:#1A1A1E;}
+.coll-swatch{width:44px;height:44px;border-radius:50%;margin-bottom:22px;}
+.coll-card h3{font-size:1.3rem;}
+.coll-card p{font-size:0.85rem;color:#A9A398;margin-top:8px;}
+.coll-card .go{margin-top:20px;font-size:0.8rem;color:var(--gold-l);}
+
+/* PRODUCT GRID */
+.filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
+.filter-btn{padding:9px 18px;border:1px solid var(--line);background:transparent;color:var(--ivory);font-size:0.8rem;border-radius:20px;letter-spacing:0.03em;}
+.filter-btn.active{background:var(--gold);color:var(--black);border-color:var(--gold);}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.prod-card{background:var(--black2);border:1px solid var(--line);overflow:hidden;transition:transform .2s;}
+.prod-card:hover{transform:translateY(-3px);}
+.prod-img{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
+.prod-img svg{width:58%;height:58%;}
+.prod-body{padding:18px 20px 22px;}
+.prod-coll{font-size:0.72rem;color:var(--gold-l);letter-spacing:0.05em;}
+.prod-card h3{font-size:1.15rem;margin-top:6px;}
+.prod-desc{font-size:0.83rem;color:#A9A398;margin-top:6px;min-height:40px;}
+.prod-price{margin-top:12px;font-size:1rem;color:var(--ivory);}
+.prod-actions{margin-top:14px;display:flex;gap:8px;}
+.prod-actions .btn{padding:9px 14px;font-size:0.78rem;flex:1;text-align:center;}
+
+/* PRODUCT DETAIL */
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.pd-img{aspect-ratio:1/1;background:var(--black2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;}
+.pd-img svg{width:52%;height:52%;}
+.pd-coll{color:var(--gold-l);font-size:0.8rem;letter-spacing:0.05em;}
+.pd h1{font-size:2.2rem;margin-top:10px;}
+.pd-price{font-size:1.4rem;margin-top:14px;color:var(--gold-l);}
+.pd-desc{margin-top:20px;color:#C9C4B8;max-width:46ch;}
+.qty-row{display:flex;align-items:center;gap:14px;margin-top:28px;}
+.qty-row button{width:34px;height:34px;border:1px solid var(--line);background:none;color:var(--ivory);font-size:1.1rem;}
+.back-link{display:inline-block;margin-bottom:26px;font-size:0.85rem;color:#A9A398;}
+
+/* ABOUT */
+.about-block{max-width:720px;margin:0 auto 60px;}
+.about-block p{color:#C9C4B8;margin-top:16px;}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:20px;}
+.values div h3{font-size:1.1rem;}
+.values div p{font-size:0.88rem;color:#A9A398;margin-top:8px;}
+
+/* CONTACT / FAQ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.form-field{margin-bottom:18px;}
+.form-field label{display:block;font-size:0.8rem;margin-bottom:6px;color:#A9A398;}
+.form-field input,.form-field textarea{width:100%;padding:12px 14px;background:var(--black2);border:1px solid var(--line);color:var(--ivory);font-family:inherit;border-radius:2px;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;text-align:left;background:none;border:none;color:var(--ivory);padding:18px 0;font-size:0.98rem;display:flex;justify-content:space-between;}
+.faq-a{max-height:0;overflow:hidden;color:#A9A398;font-size:0.88rem;transition:max-height .25s ease;}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:18px;}
+
+/* NEWSLETTER */
+.newsletter{background:var(--midnight);text-align:center;padding:70px 0;}
+.newsletter h2{font-size:clamp(1.6rem,3vw,2.1rem);}
+.newsletter p{color:#A9A398;margin-top:10px;}
+.nform{margin-top:28px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.nform input{padding:13px 16px;border:1px solid var(--line);background:transparent;color:var(--ivory);width:280px;max-width:70vw;border-radius:2px;font-family:inherit;}
+
+/* CART DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;}
+.overlay.show{opacity:1;pointer-events:auto;}
+.drawer{position:fixed;top:0;right:-420px;width:400px;max-width:90vw;height:100%;background:var(--black2);
+  border-left:1px solid var(--line);z-index:51;transition:right .25s ease;display:flex;flex-direction:column;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+.drawer.show{right:0;}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line);}
+.drawer-items{flex:1;overflow-y:auto;padding:18px 24px;}
+.cart-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);}
+.cart-row .sw{width:56px;height:56px;flex-shrink:0;}
+.cart-row .info{flex:1;}
+.cart-row .info h4{font-size:0.95rem;font-weight:500;font-family:'Montserrat',sans-serif;}
+.cart-row .ctrl{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:0.82rem;}
+.cart-row .ctrl button{width:22px;height:22px;border:1px solid var(--line);background:none;color:var(--ivory);font-size:0.8rem;}
+.cart-row .remove{color:#C9A5A5;font-size:0.75rem;margin-top:6px;}
+.drawer-foot{padding:22px 24px;border-top:1px solid var(--line);}
+.drawer-foot .subtotal{display:flex;justify-content:space-between;font-size:1rem;margin-bottom:16px;}
+.close-x{background:none;border:none;color:var(--ivory);font-size:1.3rem;}
+.empty-cart{color:#A9A398;font-size:0.9rem;padding:40px 0;text-align:center;}
+
+footer{border-top:1px solid var(--line);padding:40px 0;}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:0.82rem;color:#A9A398;}
+
+/* COMING SOON */
+.soon{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;}
+.soon h1{font-size:clamp(2rem,6vw,3.2rem);}
+.soon p{color:#A9A398;margin-top:14px;max-width:40ch;}
+
+@media (max-width:860px){
+  .coll-grid{grid-template-columns:repeat(2,1fr);}
+  .prod-grid{grid-template-columns:repeat(2,1fr);}
+  .pd{grid-template-columns:1fr;gap:30px;}
+  .contact-grid{grid-template-columns:1fr;}
+  .values{grid-template-columns:1fr;}
+  .navlinks{display:none;}
+  .hamburger{display:block;}
+}
+@media (max-width:480px){
+  .coll-grid,.prod-grid{grid-template-columns:1fr;}
+}
+.mobile-menu{display:none;flex-direction:column;gap:2px;background:var(--black2);border-top:1px solid var(--line);}
+.mobile-menu.show{display:flex;}
+.mobile-menu a{padding:16px 28px;border-bottom:1px solid var(--line);font-size:0.9rem;}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="drawer" id="drawer" role="dialog" aria-label="Shopping cart">
+  <div class="drawer-head"><h3 style="font-size:1.1rem;">Your Bag</h3><button class="close-x" onclick="closeCart()" aria-label="Close cart">✕</button></div>
+  <div class="drawer-items" id="drawer-items"></div>
+  <div class="drawer-foot" id="drawer-foot"></div>
+</div>
+
+<script>
+/* ---------- CONFIG ---------- */
+const COMING_SOON = false; // flip to true to show the coming-soon splash instead of the full site
+
+/* ---------- DATA ---------- */
+const COLLECTIONS = {
+  royal:   {name:'Royal',        color:'#6A0DAD', tagline:'Bold purple, made for presence.'},
+  midnight:{name:'Midnight',     color:'#2A2A33', tagline:'Blackened metal, after-dark elegance.'},
+  gold:    {name:'Gold Edition', color:'#D4AF37', tagline:'Warm champagne gold, timeless.'},
+  violet:  {name:'Violet',       color:'#B480D9', tagline:'Soft amethyst tones, everyday luxury.'}
+};
+const PRODUCTS = [
+  {id:'r1',name:'Reign',collection:'royal',price:28,desc:'Chunky curb chain in oxidized sterling, finished with a purple enamel clasp.'},
+  {id:'r2',name:'Sovereign',collection:'royal',price:30,desc:'Hand-set amethyst stones along a slim royal-purple cable chain.'},
+  {id:'r3',name:'Regalia',collection:'royal',price:26,desc:'Layered double-strand bracelet with a sculpted crown clasp.'},
+  {id:'m1',name:'Eclipse',collection:'midnight',price:18,desc:'Matte black rhodium links with a brushed, almost-invisible finish.'},
+  {id:'m2',name:'Noir',collection:'midnight',price:22,desc:'Woven black leather cord with a magnetic titanium clasp.'},
+  {id:'m3',name:'Umbra',collection:'midnight',price:20,desc:'Beaded onyx strand, hand-knotted between each stone.'},
+  {id:'g1',name:'Aurelia',collection:'gold',price:29,desc:'14k gold-fill herringbone chain, polished to a soft glow.'},
+  {id:'g2',name:'Heirloom',collection:'gold',price:30,desc:'Hammered gold-fill cuff with a hand-finished edge.'},
+  {id:'g3',name:'Dynasty',collection:'gold',price:27,desc:'Classic paperclip chain in warm champagne gold-fill.'},
+  {id:'v1',name:'Amethyst Drop',collection:'violet',price:15,desc:'Delicate chain with a single faceted amethyst charm.'},
+  {id:'v2',name:'Lilac',collection:'violet',price:17,desc:'Pastel-violet freshwater pearls on a fine gold-fill wire.'},
+  {id:'v3',name:'Wisteria',collection:'violet',price:19,desc:'Soft violet glass beads alternating with brushed gold discs.'}
+];
+
+/* ---------- CART ---------- */
+let cart = [];
+try{ cart = JSON.parse(localStorage.getItem('velora_cart')||'[]'); }catch(e){ cart = []; }
+function saveCart(){ try{ localStorage.setItem('velora_cart', JSON.stringify(cart)); }catch(e){} }
+function addToCart(id, qty){
+  qty = qty||1;
+  const row = cart.find(c=>c.id===id);
+  if(row) row.qty += qty; else cart.push({id, qty});
+  saveCart(); renderCartDrawer(); updateCartCount();
+}
+function setQty(id, qty){
+  const row = cart.find(c=>c.id===id);
+  if(!row) return;
+  row.qty = qty;
+  if(row.qty<=0) cart = cart.filter(c=>c.id!==id);
+  saveCart(); renderCartDrawer(); updateCartCount();
+}
+function removeFromCart(id){ cart = cart.filter(c=>c.id!==id); saveCart(); renderCartDrawer(); updateCartCount(); }
+function cartTotal(){ return cart.reduce((sum,c)=>{ const p=PRODUCTS.find(p=>p.id===c.id); return sum+(p?p.price*c.qty:0); },0); }
+function updateCartCount(){
+  const n = cart.reduce((s,c)=>s+c.qty,0);
+  const el = document.getElementById('cart-count');
+  if(el){ el.textContent = n; el.style.display = n>0 ? 'flex':'none'; }
+}
+function openCart(){ document.getElementById('drawer').classList.add('show'); document.getElementById('overlay').classList.add('show'); renderCartDrawer(); }
+function closeCart(){ document.getElementById('drawer').classList.remove('show'); document.getElementById('overlay').classList.remove('show'); }
+function renderCartDrawer(){
+  const items = document.getElementById('drawer-items');
+  const foot = document.getElementById('drawer-foot');
+  if(cart.length===0){
+    items.innerHTML = '<div class="empty-cart">Your bag is empty.</div>';
+    foot.innerHTML = '';
+    return;
+  }
+  items.innerHTML = cart.map(c=>{
+    const p = PRODUCTS.find(p=>p.id===c.id); if(!p) return '';
+    return `<div class="cart-row">
+      <div class="sw">${swatchSVG(p.collection,40)}</div>
+      <div class="info">
+        <h4>${p.name}</h4>
+        <div style="font-size:0.8rem;color:#A9A398;">$${p.price} · ${COLLECTIONS[p.collection].name}</div>
+        <div class="ctrl">
+          <button onclick="setQty('${p.id}', ${c.qty-1})" aria-label="Decrease quantity">−</button>
+          <span>${c.qty}</span>
+          <button onclick="setQty('${p.id}', ${c.qty+1})" aria-label="Increase quantity">+</button>
+        </div>
+        <div class="remove" role="button" tabindex="0" onclick="removeFromCart('${p.id}')">Remove</div>
+      </div>
+    </div>`;
+  }).join('');
+  foot.innerHTML = `<div class="subtotal"><span>Subtotal</span><span>$${cartTotal()}</span></div>
+    <button class="btn btn-gold" style="width:100%;" onclick="checkout()">Checkout</button>
+    <p style="font-size:0.75rem;color:#A9A398;margin-top:12px;">Secure checkout isn't connected yet — this is a preview site. Reach out via the Contact page to place an order for now.</p>`;
+}
+function checkout(){ alert("Checkout isn't connected yet. Please use the Contact page to complete your order for now."); }
+
+/* ---------- SVG PLACEHOLDER ART ---------- */
+function swatchSVG(collKey, size){
+  size = size||120;
+  const c = COLLECTIONS[collKey].color;
+  return `<svg viewBox="0 0 120 120" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" fill="#141417"/>
+    <g fill="none" stroke="${c}" stroke-width="5">
+      <ellipse cx="42" cy="38" rx="22" ry="15" transform="rotate(-18 42 38)"/>
+      <ellipse cx="70" cy="50" rx="22" ry="15" transform="rotate(20 70 50)"/>
+      <ellipse cx="48" cy="70" rx="22" ry="15" transform="rotate(-10 48 70)"/>
+      <ellipse cx="80" cy="82" rx="22" ry="15" transform="rotate(24 80 82)"/>
+    </g>
+  </svg>`;
+}
+
+/* ---------- ROUTER ---------- */
+const app = document.getElementById('app');
+function navActive(route){
+  return ['home','shop','collections','about','contact'].includes(route) ? route : (route.startsWith('product-')?'shop':(route.startsWith('collection-')?'collections':'home'));
+}
+function header(route){
+  const active = navActive(route);
+  const links = [['home','Home'],['shop','Shop'],['collections','Collections'],['about','About'],['contact','Contact']];
+  return `<header>
+    <nav class="wrap">
+      <a class="logo" href="#home">VELORA<span class="dot">.</span></a>
+      <div class="navlinks">${links.map(l=>`<a href="#${l[0]}" class="${active===l[0]?'active':''}">${l[1]}</a>`).join('')}</div>
+      <div class="navright">
+        <button class="cartbtn" onclick="openCart()" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span class="cartcount" id="cart-count" style="display:none;">0</span>
+        </button>
+        <button class="hamburger" onclick="document.getElementById('mmenu').classList.toggle('show')" aria-label="Menu">☰</button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mmenu">${links.map(l=>`<a href="#${l[0]}">${l[1]}</a>`).join('')}</div>
+  </header>`;
+}
+function footer(){
+  return `<footer><div class="wrap">
+    <div>© 2026 VELORA — Crafted to Stand Out.</div>
+    <div>Instagram · Pinterest · hello@velora.example</div>
+  </div></footer>`;
+}
+function newsletterBlock(){
+  return `<section class="newsletter"><div class="wrap">
+    <h2>Be first to shop the next drop</h2>
+    <p>New pieces and restocks, a few times a season — no spam.</p>
+    <form class="nform" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You\\'re on the list';">
+      <input type="email" placeholder="you@email.com" required aria-label="Email address">
+      <button class="btn btn-gold" type="submit">Join</button>
+    </form>
+  </div></section>`;
+}
+function productCard(p){
+  return `<div class="prod-card">
+    <a href="#product-${p.id}"><div class="prod-img" style="background:#141417;">${swatchSVG(p.collection,110)}</div></a>
+    <div class="prod-body">
+      <div class="prod-coll">${COLLECTIONS[p.collection].name.toUpperCase()}</div>
+      <a href="#product-${p.id}"><h3>${p.name}</h3></a>
+      <div class="prod-desc">${p.desc}</div>
+      <div class="prod-price">$${p.price}</div>
+      <div class="prod-actions">
+        <a class="btn btn-outline" href="#product-${p.id}">View</a>
+        <button class="btn btn-gold" onclick="addToCart('${p.id}',1)">Add</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderHome(){
+  const featured = PRODUCTS.filter(p=>['r1','g1','v1','m1'].includes(p.id));
+  app.innerHTML = header('home') + `
+  <section class="hero"><div class="wrap">
+    <h1>Jewelry built link by link.</h1>
+    <div class="slogan">Crafted to Stand Out.</div>
+    <p>Royal purple, champagne gold, and blackened metal — four collections, made to be layered on one wrist.</p>
+    <div class="ctas"><a class="btn btn-gold" href="#shop">Shop All</a><a class="btn btn-outline" href="#collections">View Collections</a></div>
+  </div></section>
+  <section class="section"><div class="wrap">
+    <div class="section-head"><h2>Shop by Collection</h2><p>Four distinct lines, one house.</p></div>
+    <div class="coll-grid">${Object.entries(COLLECTIONS).map(([k,c])=>`
+      <a class="coll-card" href="#collection-${k}">
+        <div><div class="coll-swatch" style="background:${c.color};"></div><h3>${c.name}</h3><p>${c.tagline}</p></div>
+        <div class="go">Shop ${c.name} →</div>
+      </a>`).join('')}</div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="section-head"><h2>Featured Pieces</h2></div>
+    <div class="prod-grid">${featured.map(productCard).join('')}</div>
+  </div></section>
+  ${newsletterBlock()}
+  ${footer()}`;
+}
+
+function renderShop(preset){
+  let filter = preset || 'all';
+  function list(){
+    const items = filter==='all' ? PRODUCTS : PRODUCTS.filter(p=>p.collection===filter);
+    return items.map(productCard).join('');
+  }
+  app.innerHTML = header('shop') + `
+  <section class="section"><div class="wrap">
+    <div class="section-head"><h2>Shop All</h2><p>Every piece, one place.</p></div>
+    <div class="filters" id="filters">
+      <button class="filter-btn ${filter==='all'?'active':''}" data-f="all">All</button>
+      ${Object.entries(COLLECTIONS).map(([k,c])=>`<button class="filter-btn ${filter===k?'active':''}" data-f="${k}">${c.name}</button>`).join('')}
+    </div>
+    <div class="prod-grid" id="prod-grid">${list()}</div>
+  </div></section>
+  ${footer()}`;
+  document.getElementById('filters').addEventListener('click', e=>{
+    const btn = e.target.closest('.filter-btn'); if(!btn) return;
+    filter = btn.dataset.f;
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b===btn));
+    document.getElementById('prod-grid').innerHTML = list();
+  });
+}
+
+function renderCollections(){
+  app.innerHTML = header('collections') + `
+  <section class="section"><div class="wrap">
+    <div class="section-head"><h2>Collections</h2><p>Each line has its own character — wear one or mix across.</p></div>
+    <div class="coll-grid">${Object.entries(COLLECTIONS).map(([k,c])=>`
+      <a class="coll-card" href="#collection-${k}" style="min-height:260px;">
+        <div><div class="coll-swatch" style="background:${c.color};"></div><h3>${c.name}</h3><p>${c.tagline}</p></div>
+        <div class="go">Shop ${c.name} →</div>
+      </a>`).join('')}</div>
+  </div></section>
+  ${footer()}`;
+}
+
+function renderProduct(id){
+  const p = PRODUCTS.find(p=>p.id===id);
+  if(!p){ app.innerHTML = header('shop') + `<section class="section"><div class="wrap"><p>Product not found.</p><a href="#shop" class="btn btn-outline">Back to Shop</a></div></section>` + footer(); return; }
+  let qty = 1;
+  app.innerHTML = header('shop') + `
+  <section class="section"><div class="wrap">
+    <a class="back-link" href="#collection-${p.collection}">← Back to ${COLLECTIONS[p.collection].name}</a>
+    <div class="pd">
+      <div class="pd-img">${swatchSVG(p.collection,260)}</div>
+      <div>
+        <div class="pd-coll">${COLLECTIONS[p.collection].name.toUpperCase()}</div>
+        <h1>${p.name}</h1>
+        <div class="pd-price">$${p.price}</div>
+        <p class="pd-desc">${p.desc} Each piece ships in a VELORA box, ready to gift.</p>
+        <div class="qty-row">
+          <button id="qdec" aria-label="Decrease quantity">−</button>
+          <span id="qval">1</span>
+          <button id="qinc" aria-label="Increase quantity">+</button>
+        </div>
+        <div style="margin-top:22px;"><button class="btn btn-gold" id="addbtn">Add to Bag — $${p.price}</button></div>
+      </div>
+    </div>
+  </div></section>
+  ${footer()}`;
+  document.getElementById('qdec').onclick = ()=>{ qty=Math.max(1,qty-1); document.getElementById('qval').textContent=qty; };
+  document.getElementById('qinc').onclick = ()=>{ qty+=1; document.getElementById('qval').textContent=qty; };
+  document.getElementById('addbtn').onclick = ()=>{ addToCart(p.id, qty); openCart(); };
+}
+
+function renderAbout(){
+  app.innerHTML = header('about') + `
+  <section class="section"><div class="wrap">
+    <div class="about-block">
+      <h2>Our Story</h2>
+      <p>VELORA began with a simple belief: a bracelet should feel considered, not mass-produced. Every link, clasp and stone is chosen so the finished piece feels substantial on the wrist — built to be worn daily, not saved for occasions.</p>
+      <p>We design in small batches across four collections — Royal, Midnight, Gold Edition and Violet — so that no two seasons look alike, and so that pieces from different collections still sit well together.</p>
+      <div class="values">
+        <div><h3>Considered materials</h3><p>Gold-fill, sterling, and natural stone — nothing plated to fade.</p></div>
+        <div><h3>Small batches</h3><p>Collections are produced in limited runs rather than ongoing mass stock.</p></div>
+        <div><h3>Made to last</h3><p>Clasps and chains are built to be repaired, not replaced.</p></div>
+      </div>
+    </div>
+  </div></section>
+  ${footer()}`;
+}
+
+const FAQ = [
+  ['Do you offer repairs?','Yes — reach out through the Contact page and we will arrange a repair for any VELORA piece, regardless of when it was purchased.'],
+  ['What are your bracelets made from?','A mix of gold-fill, sterling silver, oxidized metals, and natural stone or pearl, depending on the collection.'],
+  ['How long does shipping take?','Once we launch fully, standard orders will ship within 3–5 business days. This preview site does not yet process real orders.'],
+  ['Can I return a piece?','Yes, unworn pieces can be returned within 30 days once full ordering is live.']
+];
+function renderContact(){
+  app.innerHTML = header('contact') + `
+  <section class="section"><div class="wrap">
+    <div class="section-head"><h2>Contact</h2><p>Questions about an order, a repair, or a collaboration — we read every message.</p></div>
+    <div class="contact-grid">
+      <form id="cform">
+        <div class="form-field"><label>Name</label><input type="text" required></div>
+        <div class="form-field"><label>Email</label><input type="email" required></div>
+        <div class="form-field"><label>Message</label><textarea rows="5" required></textarea></div>
+        <button class="btn btn-gold" type="submit">Send Message</button>
+        <p id="cform-msg" style="margin-top:14px;font-size:0.85rem;color:#A9A398;"></p>
+      </form>
+      <div>
+        <h3 style="font-size:1.2rem;margin-bottom:16px;">Frequently Asked</h3>
+        <div id="faq">${FAQ.map((f,i)=>`
+          <div class="faq-item" data-i="${i}">
+            <button class="faq-q">${f[0]}<span>+</span></button>
+            <div class="faq-a">${f[1]}</div>
+          </div>`).join('')}</div>
+      </div>
+    </div>
+  </div></section>
+  ${footer()}`;
+  document.getElementById('cform').addEventListener('submit', e=>{
+    e.preventDefault();
+    document.getElementById('cform-msg').textContent = "Thanks — we'll get back to you soon.";
+    e.target.reset();
+  });
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=> item.classList.toggle('open'));
+  });
+}
+
+function renderComingSoon(){
+  app.innerHTML = `<div class="soon">
+    <div class="logo" style="font-size:2.2rem;">VELORA<span class="dot">.</span></div>
+    <h1 style="margin-top:18px;">Crafted to Stand Out.</h1>
+    <p>Something new is on its way. Leave your email and we'll let you know the moment we launch.</p>
+    <form class="nform" style="margin-top:30px;" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You\\'re on the list';">
+      <input type="email" placeholder="you@email.com" required aria-label="Email address">
+      <button class="btn btn-gold" type="submit">Notify Me</button>
+    </form>
+  </div>`;
+}
+
+function route(){
+  if(COMING_SOON){ renderComingSoon(); return; }
+  const hash = (location.hash||'#home').slice(1);
+  if(hash==='home' || hash==='') renderHome();
+  else if(hash==='shop') renderShop('all');
+  else if(hash==='collections') renderCollections();
+  else if(hash==='about') renderAbout();
+  else if(hash==='contact') renderContact();
+  else if(hash.startsWith('collection-')) renderShop(hash.replace('collection-',''));
+  else if(hash.startsWith('product-')) renderProduct(hash.replace('product-',''));
+  else renderHome();
+  window.scrollTo(0,0);
+  updateCartCount();
+}
+window.addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>
